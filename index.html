@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huzaifa Abdurahman</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
 <header>
@@ -197,15 +198,15 @@
               <h2>Send Message</h2>
               <form action="#">
                   <div class="form-control">
-                      <input type="text" required>
+                      <input type="text" name="email" required>
                       <label>Email or phone number</label>
                   </div>
                   <div class="form-control">
-                      <input type="Full Name" required>
+                      <input type="Full Name" name="fullname" required>
                       <label>Full Name</label>
                   </div>
                   <div class="form-control">
-                      <input type="Message" required>
+                      <input type="Message" name="message" required>
                       <label>Message</label>
                   </div>
                   <button type="submit">Submit</button>
@@ -260,5 +261,40 @@
   
 
 </section>
+    
+        <!-- Include EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <script>
+        // Initialize EmailJS with your user ID
+        emailjs.init("YFrfPfe1Dw9e3N_wkK");
+
+        // Form submission event listener
+        document.getElementById("contact").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent form from reloading the page
+
+            // Get form data
+            const fullname = document.getElementById("fullname").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // Prepare the template parameters
+            const templateParams = {
+                fullname: fullname,
+                email: email,
+                message: message
+            };
+
+            // Send email using EmailJS
+            emailjs.send("abdurahhuzaifa393@gmail.com", "template_nhkxvys", templateParams)
+                .then(function(response) {
+                    console.log("SUCCESS", response);
+                    document.getElementById("status-message").textContent = "Message sent successfully!";
+                }, function(error) {
+                    console.log("FAILED", error);
+                    document.getElementById("status-message").textContent = "Oops, something went wrong!";
+                });
+        });
+    </script>
 </body>
 </html>
