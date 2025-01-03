@@ -4,6 +4,9 @@
 *::before {
   box-sizing: border-box;
 }
+ html {
+      scroll-behavior: smooth;
+    }
         body{
             background-color: #222f3e;
             color: aliceblue;
