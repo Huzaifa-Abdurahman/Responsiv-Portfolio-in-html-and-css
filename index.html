@@ -291,11 +291,39 @@
                 .then(function(response) {
                     console.log("SUCCESS", response);
                     document.getElementById("status-message").textContent = "Message sent successfully!";
+                    alert("Message sent successfully! We'll get back to you shortly.");
                 }, function(error) {
                     console.log("FAILED", error);
                     document.getElementById("status-message").textContent = "Oops, something went wrong!";
+                     alert("Oops! Something went wrong. Please try again.");
+           
                 });
         });
     </script>
+      <script>
+    // Block specific IP addresses (example, replace IPs as required)
+    const blockedIPs = ["123.45.67.89", "111.222.333.444"];
+
+    // Get user's IP using third-party API
+    fetch("https://api64.ipify.org?format=json")
+        .then(response => response.json())
+        .then(data => {
+            if (blockedIPs.includes(data.ip)) {
+                alert("Access Denied: Your IP is blocked.");
+                document.body.innerHTML = "<h1>403 Forbidden</h1>";
+            }
+        });
+
+    // Basic User Agent restriction (optional)
+    const blockedUserAgents = ["BadBot", "MaliciousCrawler"];
+    const userAgent = navigator.userAgent;
+
+    blockedUserAgents.forEach(agent => {
+        if (userAgent.includes(agent)) {
+            alert("Access Denied: Unrecognized Browser");
+            document.body.innerHTML = "<h1>403 Forbidden</h1>";
+        }
+    });
+</script>
 </body>
 </html>
