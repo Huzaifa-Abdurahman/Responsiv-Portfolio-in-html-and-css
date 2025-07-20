@@ -283,6 +283,7 @@ body {
 }
 
 /* Hero Section */
+/* Hero Section */
 .hero {
     margin-top: 100px;
     display: flex;
@@ -292,6 +293,7 @@ body {
     min-height: 80vh;
     position: relative;
     overflow: hidden;
+    padding: 20px; /* Added for better spacing on smaller screens */
 }
 
 .hero::before {
@@ -321,11 +323,13 @@ body {
 
 .hero img {
     border-radius: 50%;
-    background-size: auto;
     box-shadow: 0 0 25px var(--primary-color);
     cursor: pointer;
     transition: all 0.5s ease;
     border: 3px solid var(--primary-color);
+    width: 300px; /* Moved inline width to CSS */
+    height: 300px; /* Moved inline height to CSS */
+    object-fit: cover; /* Ensures image fits nicely in circle */
 }
 
 .hero img:hover {
@@ -366,6 +370,144 @@ body {
     flex-wrap: wrap;
 }
 
+/* Automation text */
+.wrapper {
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: auto; /* Center wrapper */
+    margin-right: auto; /* Center wrapper */
+}
+
+.wrapper .static-txt {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 400;
+}
+
+.wrapper .dynamic-txts {
+    margin-left: 15px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.dynamic-txts li {
+    list-style: none;
+    color: #fc6d6d;
+    font-size: 60px;
+    font-weight: 500;
+    position: relative;
+    top: 0;
+    animation: slide 12s steps(5) infinite; /* Hardcoded item count (5) */
+}
+
+@keyframes slide {
+    100% {
+        top: calc(-80px * 5); /* Hardcoded for 5 items */
+    }
+}
+
+.dynamic-txts li span {
+    position: relative;
+    display: inline-block;
+    line-height: 80px; /* Match container height for alignment */
+    margin: 0 10px;
+}
+
+.dynamic-txts li span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--bg-color);
+    border-left: 2px solid #fc6d6d;
+    animation: typing 2.4s steps(10) infinite;
+}
+
+@keyframes typing {
+    0% {
+        left: 0;
+    }
+    50% {
+        left: calc(100% + 10px);
+    }
+    100% {
+        left: calc(100% + 10px);
+    }
+}
+
+/* Ensure compatibility with older browsers */
+@-webkit-keyframes slide {
+    100% {
+        top: calc(-80px * 5); /* Hardcoded for 5 items */
+    }
+}
+
+@-webkit-keyframes typing {
+    0% {
+        left: 0;
+    }
+    50% {
+        left: calc(100% + 10px);
+    }
+    100% {
+        left: calc(100% + 10px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        gap: 50px;
+        margin-top: 50px;
+        min-height: auto;
+    }
+
+    .hero img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .wrapper {
+        max-width: 100%;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .wrapper .static-txt,
+    .wrapper .dynamic-txts li {
+        font-size: 40px;
+    }
+
+    .wrapper .dynamic-txts {
+        margin-left: 0;
+        height: 60px;
+    }
+
+    .dynamic-txts li {
+        animation: slide 12s steps(5) infinite;
+    }
+
+    .dynamic-txts li span {
+        line-height: 60px;
+    }
+
+    @keyframes slide {
+        100% {
+            top: calc(-60px * 5);
+        }
+    }
+
+    @-webkit-keyframes slide {
+        100% {
+            top: calc(-60px * 5);
+        }
+    }
+}
 /* Automation text */
 
         .wrapper {
